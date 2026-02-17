@@ -129,7 +129,7 @@ a {
     position: relative;
     height: 100vh;
     min-height: 700px;
-    background-image: url('images/hero_magic.png');
+    background-image: url('images/download-2.jpg');
     background-size: cover;
     background-position: center;
     margin-top: 0;
@@ -206,73 +206,7 @@ a {
     padding: 15px 40px;
 }
 
-/* Hero Bottom Service List */
-.hero-bottom-area {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    max-width: 900px;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 25px 30px;
-    border-radius: 15px;
-}
-
-.hero-service-title {
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    border-left: 4px solid #f59e0b;
-    padding-left: 10px;
-}
-
-.hero-service-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.hero-service-row {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 10px;
-    padding: 12px 15px;
-    gap: 15px;
-    transition: background 0.3s;
-}
-
-.hero-service-row:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-
-.hero-service-img {
-    width: 70px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 6px;
-    flex-shrink: 0;
-}
-
-.hero-service-name {
-    flex: 1;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #fff;
-}
-
-.hero-service-link {
-    color: #f59e0b;
-    font-size: 0.9rem;
-    text-decoration: none;
-}
-
-.hero-service-link:hover {
-    opacity: 0.7;
-}
+/* Hero Bottom Service List REMOVED */
 
 /* SERVICE SECTION */
 .service-section {
@@ -294,9 +228,9 @@ a {
 }
 
 .service-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
 }
 
 .service-card {
@@ -304,29 +238,34 @@ a {
     border-radius: 12px;
     overflow: hidden;
     display: flex;
-    gap: 30px;
-    padding: 30px;
+    flex-direction: column;
+    /* Changed to column */
+    gap: 0;
+    /* Gap handled by padding/margin */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: all 0.3s;
+    height: 100%;
+    /* Equal height */
 }
 
 .service-card:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
+    transform: translateY(-5px);
 }
 
 .service-img-large {
-    width: 40%;
+    width: 100%;
+    height: 200px;
+    /* Fixed height for consistency */
     flex-shrink: 0;
-    border-radius: 8px;
-    overflow: hidden;
+    border-radius: 0;
+    /* Remove internal border radius if any */
 }
 
 .service-img-large img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    min-height: 250px;
 }
 
 .service-content {
@@ -334,32 +273,42 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 25px;
+    /* Added padding to content area */
 }
 
 .service-title-large {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
+    /* Adjusted for card size */
     font-weight: 700;
     color: #333;
     margin-bottom: 15px;
     letter-spacing: 0.05em;
+    min-height: 1.4em;
+    /* Ensure some alignment */
 }
 
 .service-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.8;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    flex-grow: 1;
+    /* Push actions to bottom */
 }
 
 .service-actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    /* Space out buttons */
+    gap: 10px;
+    margin-top: auto;
 }
 
 .service-link {
     color: #f59e0b;
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -372,7 +321,20 @@ a {
 }
 
 /* SPレスポンシブ調整 */
+@media (max-width: 900px) {
+
+    /* Breakpoint for grid collapsing */
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+        /* Single column on mobile */
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -386,13 +348,13 @@ a {
         padding: 10px 20px;
     }
 
+    /* .service-card styles are already column by default now, so just ensuring padding/sizing */
     .service-card {
-        flex-direction: column;
-        padding: 20px;
+        padding: 0;
+        /* Content padding is inside .service-content */
     }
 
     .service-img-large {
-        width: 100%;
         height: 200px;
     }
 
@@ -402,12 +364,6 @@ a {
 
     .service-description {
         font-size: 0.95rem;
-    }
-
-    .service-actions {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
     }
 }
 
@@ -807,6 +763,45 @@ a {
     /* 最下部に配置 */
 }
 
+/* Text Highlight (Line Marker) */
+.text-highlight {
+    background: linear-gradient(transparent 60%, #fdba74 60%);
+    /* Orange-300 lighter */
+    font-weight: 700;
+}
+
+/* Button & Link Text Wrapping Fix */
+.btn,
+.service-link {
+    white-space: nowrap;
+}
+
+.service-tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.service-tag {
+    background-color: #fff7ed;
+    /* Orange-50 */
+    color: #c2410c;
+    /* Orange-700 */
+    border: 1px solid #fed7aa;
+    /* Orange-200 */
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.service-highlight-text {
+    font-weight: 700;
+    color: #b45309;
+    background: linear-gradient(transparent 70%, #fde68a 70%);
+}
+
 
 
 /* CONTACT SECTION */
@@ -909,18 +904,18 @@ a {
     justify-content: center;
 }
 
-.sf-btn-custom {
-    flex: 1;
-    max-width: 140px;
-    font-size: 0.85rem !important;
-    padding: 10px 5px !important;
+.sf-btn-unified {
+    font-size: 1.1rem !important;
+    padding: 14px 50px !important;
     line-height: 1.3;
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 10px rgba(217, 119, 6, 0.3) !important;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
 }
 
 /* CONTACT SECTION STYLES */
@@ -995,8 +990,9 @@ body {
         padding: 20px;
     }
 
-    .sf-btn-custom {
-        font-size: 0.75rem !important;
+    .sf-btn-unified {
+        font-size: 0.95rem !important;
+        padding: 12px 30px !important;
     }
 }
 
@@ -1148,9 +1144,63 @@ body {
     .magic-service-detail h2 {
         font-size: 1.8rem;
     }
+}
 
-    .venue-item {
-        padding: 10px 20px;
-        font-size: 0.95rem;
+/* --- ADDED / UPDATED STYLES FOR BUTTONS --- */
+
+/* Service Detail Button (Updated from Link to Button) */
+.service-btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: transparent;
+    color: #d97706;
+    border: 2px solid #d97706;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+}
+
+.service-btn:hover {
+    background-color: #d97706;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.2);
+}
+
+/* Hero Button (New) */
+.btn-hero {
+    font-size: 1.3rem;
+    /* Slightly larger */
+    padding: 18px 50px;
+    box-shadow: 0 5px 20px rgba(217, 119, 6, 0.4);
+}
+
+.btn-hero:hover {
+    box-shadow: 0 8px 25px rgba(217, 119, 6, 0.6);
+}
+
+/* Sticky Footer Button - Made Larger */
+.sf-btn-unified {
+    font-size: 1.4rem !important;
+    /* Increased from 1.1rem */
+    padding: 20px 80px !important;
+    /* Increased from 14px 50px */
+    letter-spacing: 0.15em;
+    box-shadow: 0 5px 20px rgba(217, 119, 6, 0.5) !important;
+}
+
+/* Responsive adjustment for the large footer button */
+@media (max-width: 768px) {
+    .sf-btn-unified {
+        font-size: 1.1rem !important;
+        padding: 15px 40px !important;
+    }
+
+    .btn-hero {
+        font-size: 1.1rem;
+        padding: 15px 40px;
     }
 }
